@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: learn
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+#    serialization:
+#      WRITE_DATES_AS_TIMESTAMPS: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: ${DB_USERNAME:king}
+    password: ${DB_PASSWORD:king123}
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 2
+      min-idle: 1
+      max-active: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
