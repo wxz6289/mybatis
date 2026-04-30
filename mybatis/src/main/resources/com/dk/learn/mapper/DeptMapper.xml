@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.learn.mapper.DeptMapper">
+    <sql id="dept">
+        select id, name, createdAt, updatedAt from dept
+    </sql>
+    <resultMap id="deptResultMap" type="com.dk.learn.entity.Dept">
+        <id property="createdTime" column="createdAt"/>
+        <result property="updatedTime" column="updatedAt"/>
+    </resultMap>
+    <select id="getDeptById" resultMap="deptResultMap">
+        <include refid="dept"/> where id = #{id}
+    </select>
+</mapper>
