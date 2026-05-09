@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<configuration>
+    <environment id="development">
+        <transactionManager type="JDBC">
+            <property name="" value=""/>
+        </transactionManager>
+        <dataSource type="POOLED">
+            <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+            <property name="username" value="${user.name}"/>
+            <property name="password" value="${user.password}"/>
+        </dataSource>
+    </environment>
+    <mappers>
+        <mapper resource="com/dk/learn/mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>

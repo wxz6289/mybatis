@@ -1,6 +1,9 @@
 spring:
   application:
     name: learn
+  mvc:
+    favicon:
+      enabled: false
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -18,9 +21,42 @@ spring:
       max-active: 10
       max-wait: 60000
       pool-prepared-statements: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-undercase-to-camelcase: true
+    map-underscore-to-camelcase: true
+
+# 文件上传配置
+file:
+  upload:
+    path: ./uploads
+    max-size: 10485760  # 10MB
+    allowed-types:
+      - image/jpeg
+      - image/png
+      - image/gif
+      - image/webp
+      - application/pdf
+      - application/msword
+      - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+      - application/vnd.ms-excel
+      - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      - text/plain
+    allowed-extensions:
+      - jpg
+      - jpeg
+      - png
+      - gif
+      - webp
+      - pdf
+      - doc
+      - docx
+      - xls
+      - xlsx
+      - txt

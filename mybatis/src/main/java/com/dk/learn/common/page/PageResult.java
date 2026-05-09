@@ -20,7 +20,7 @@ public class PageResult<T> {
 
 	public static <T> PageResult<T> of(List<T> records, long total, PageQuery query) {
 		int size = query.size();
-		long pages = size == 0 ? 0 : (total + size - 1) / size;
+		long pages = total == 0 ? 0 : (total + size - 1) / size;
 		return new PageResult<>(records, total, query.page(), size, pages);
 	}
 }

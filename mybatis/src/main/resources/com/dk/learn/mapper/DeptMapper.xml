@@ -6,11 +6,40 @@
     <sql id="dept">
         select id, name, createdAt, updatedAt from dept
     </sql>
+    <insert id="add">
+        insert into dept (name) values (#{name})
+    </insert>
+    <update id="update">
+        update dept set name = #{name} where id = #{id}
+    </update>
+    <delete id="remove">
+        delete from dept where id = #{id}
+    </delete>
     <resultMap id="deptResultMap" type="com.dk.learn.entity.Dept">
         <id property="createdTime" column="createdAt"/>
         <result property="updatedTime" column="updatedAt"/>
     </resultMap>
     <select id="getDeptById" resultMap="deptResultMap">
         <include refid="dept"/> where id = #{id}
+    </select>
+    <select id="list" resultMap="deptResultMap">
+        <include refid="dept"/>
+    </select>
+    
+    <!-- 根据条件查询部门列表 -->
+    <select id="listByCondition" resultMap="deptResultMap">
+        <include refid="dept"/>
+        <where>
+            <if test="query.name != null and query.name != ''">
+                AND name LIKE CONCAT('%', #{query.name}, '%')
+            </if>
+            <if test="query.createdTimeStart != null">
+                AND createdAt &gt;= #{query.createdTimeStart}
+            </if>
+            <if test="query.createdTimeEnd != null">
+                AND createdAt &lt;= #{query.createdTimeEnd}
+            </if>
+        </where>
+        ORDER BY createdAt DESC
     </select>
 </mapper>

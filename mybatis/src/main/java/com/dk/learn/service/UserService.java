@@ -4,6 +4,7 @@ import com.dk.learn.entity.User;
 import com.dk.learn.entity.UserQuery;
 import com.dk.learn.common.page.PageQuery;
 import com.dk.learn.common.page.PageResult;
+import com.dk.learn.entity.UserVO;
 import com.dk.learn.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,6 @@ import java.util.List;
 public class UserService {
 
 	private final UserMapper userMapper;
-
-	public PageResult<User> listUsersPage(PageQuery query) {
-		long total = userMapper.count();
-		List<User> records = userMapper.listPage(query.offset(), query.size());
-		return PageResult.of(records, total, query);
-	}
-
 	/**
 	 * 动态条件查询用户（可选参数）
 	 * @param query 查询条件，所有字段都是可选的
@@ -37,4 +31,29 @@ public class UserService {
 	public List<User> listUsersWithAnnotation(String name, Integer startAge, Integer endAge) {
 		return userMapper.listWithAnnotation(name, startAge, endAge);
 	}
+
+    public PageResult<User> listUsersWithPagination(PageQuery pq) {
+        List<UserVO> records = userMapper.listWithPagination(pq.offset(), pq.size());
+        long total = records.isEmpty()? 0 : records.getFirst().getTotal();
+        List<User> users = records.stream().map(UserVO::getUser).toList();
+        return PageResult.of(users, total, pq);
+    }
+    
+    /**
+     * 批量删除用户（支持单个和批量）
+     * @param ids 用户ID列表
+     */
+    public void batchRemoveUsers(List<Long> ids) {
+        if (ids != null && !ids.isEmpty()) {
+            userMapper.batchRemoveUsers(ids);
+        }
+    }
+    
+    /**
+     * 添加用户
+     * @param user 用户信息
+     */
+    public void addUser(User user) {
+        userMapper.addUser(user);
+    }
 }

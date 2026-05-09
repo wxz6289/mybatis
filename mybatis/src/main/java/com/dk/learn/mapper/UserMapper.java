@@ -1,7 +1,9 @@
 package com.dk.learn.mapper;
 
+import com.dk.learn.common.page.PageQuery;
 import com.dk.learn.entity.User;
 import com.dk.learn.entity.UserQuery;
+import com.dk.learn.entity.UserVO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,8 +16,8 @@ public interface UserMapper {
 			@Result(column = "createdAt", property = "createdTime"),
 			@Result(column = "updatedAt", property = "updatedTime")
 	})
-	@Select("SELECT * FROM user ORDER BY createdAt DESC LIMIT #{offset}, #{size}")
-	List<User> listPage(@Param("offset") int offset, @Param("size") int size);
+	@Select("SELECT *, COUNT(*) OVER() AS total  FROM user ORDER BY createdAt DESC LIMIT #{offset}, #{size}")
+	List<UserVO> listWithPagination(@Param("offset") int offset, @Param("size") int size);
 
 	@Select("SELECT COUNT(*) FROM user")
 	long count();

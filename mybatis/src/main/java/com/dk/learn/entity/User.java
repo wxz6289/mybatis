@@ -26,6 +26,14 @@ public class User {
         this.deptId = deptId;
     }
 
+    public User(UserVO ther) {
+        this.id = ther.getId();
+        this.name = ther.getName();
+        this.age = ther.getAge();
+        this.deptId = ther.getDeptId();
+        this.createdTime = ther.getCreatedTime();
+        this.updatedTime = ther.getUpdatedTime();
+    }
 //    public User() {
 //    }
 //

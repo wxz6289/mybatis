@@ -34,4 +34,8 @@ public class Result<T> {
 		r.setTimestamp(System.currentTimeMillis());
 		return r;
 	}
+	
+	public static <T> Result<T> error(String message) {
+		return fail(500, message);
+	}
 }

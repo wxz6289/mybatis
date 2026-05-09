@@ -1,5 +1,6 @@
 package com.dk.learn;
 
+import com.dk.learn.common.page.PageQuery;
 import com.dk.learn.entity.Dept;
 import com.dk.learn.entity.User;
 import com.dk.learn.entity.UserQuery;
@@ -26,7 +27,7 @@ class LearnApplicationTests {
 
     @Test
     public void testUserList() {
-        List<User> userList = userMapper.listPage(0, 10);
+        List<User> userList = userMapper.listWithPagination(0, 10);
         userList.stream().forEach(user -> {
             System.out.println("user = " + user);
         });
