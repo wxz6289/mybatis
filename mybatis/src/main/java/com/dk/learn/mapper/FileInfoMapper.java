@@ -57,11 +57,6 @@ public interface FileInfoMapper {
     
     /**
      * 根据条件查询文件
-     * @param originalName 原始文件名（模糊查询）
-     * @param contentType 文件类型
-     * @param offset 偏移量
-     * @param size 每页大小
-     * @return 文件列表
      */
     @Select("<script>" +
             "SELECT * FROM file_info WHERE deleted = 0" +
@@ -80,6 +75,21 @@ public interface FileInfoMapper {
                                     @Param("contentType") String contentType,
                                     @Param("offset") Integer offset,
                                     @Param("size") Integer size);
+
+    /**
+     * 根据条件统计文件总数
+     */
+    @Select("<script>" +
+            "SELECT COUNT(*) FROM file_info WHERE deleted = 0" +
+            "<if test='originalName != null and originalName != \"\"'>" +
+            "  AND original_name LIKE CONCAT('%', #{originalName}, '%')" +
+            "</if>" +
+            "<if test='contentType != null and contentType != \"\"'>" +
+            "  AND content_type = #{contentType}" +
+            "</if>" +
+            "</script>")
+    long countByCondition(@Param("originalName") String originalName,
+                          @Param("contentType") String contentType);
     
     /**
      * 逻辑删除文件

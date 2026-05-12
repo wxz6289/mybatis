@@ -1,26 +1,14 @@
 spring:
   application:
     name: learn
+  profiles:
+    active: dev
   mvc:
     favicon:
       enabled: false
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-#    serialization:
-#      WRITE_DATES_AS_TIMESTAMPS: false
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybatis?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
-    username: ${DB_USERNAME:king}
-    password: ${DB_PASSWORD:king123}
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      initial-size: 2
-      min-idle: 1
-      max-active: 10
-      max-wait: 60000
-      pool-prepared-statements: true
   servlet:
     multipart:
       max-file-size: 10MB
@@ -29,14 +17,10 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camelcase: true
 
-# 文件上传配置
+# 文件上传配置（公共部分）
 file:
   upload:
-    path: ./uploads
-    max-size: 10485760  # 10MB
     allowed-types:
       - image/jpeg
       - image/png
@@ -60,3 +44,12 @@ file:
       - xls
       - xlsx
       - txt
+
+# 阿里云OSS配置（凭据通过环境变量注入）
+aliyun:
+  oss:
+    endpoint: ${OSS_ENDPOINT:oss-cn-beijing.aliyuncs.com}
+    access-key-id: ${OSS_ACCESS_KEY_ID}
+    access-key-secret: ${OSS_ACCESS_KEY_SECRET}
+    bucket-name: ${OSS_BUCKET_NAME:wxz6289}
+    domain: ${OSS_DOMAIN:}

@@ -4,6 +4,7 @@ import com.dk.learn.common.page.PageQuery;
 import com.dk.learn.entity.Dept;
 import com.dk.learn.entity.User;
 import com.dk.learn.entity.UserQuery;
+import com.dk.learn.entity.UserVO;
 import com.dk.learn.mapper.UserMapper;
 import com.dk.learn.mapper.DeptMapper;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class LearnApplicationTests {
 
     @Test
     public void testUserList() {
-        List<User> userList = userMapper.listWithPagination(0, 10);
+        List<UserVO> userList = userMapper.listWithPagination(0, 10);
         userList.stream().forEach(user -> {
             System.out.println("user = " + user);
         });

@@ -1,7 +1,5 @@
 package com.dk.learn.controller;
 
-import com.dk.learn.common.page.PageBean;
-import com.dk.learn.common.page.PageQuery;
 import com.dk.learn.common.page.PageResult;
 import com.dk.learn.common.result.Result;
 import com.dk.learn.dao.DeptName;
@@ -10,8 +8,8 @@ import com.dk.learn.entity.DeptQuery;
 import com.dk.learn.service.DeptService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -20,13 +18,12 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/depts")
+@RequiredArgsConstructor
 public class DeptController {
-//    private static final Logger log = LoggerFactory.getLogger(DeptController.class);
 
-    @Autowired
-    private DeptService deptService;
-    
-    @RequestMapping(method = RequestMethod.GET)
+    private final DeptService deptService;
+
+    @GetMapping
     public Result<PageResult<Dept>> listDepts(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -34,24 +31,21 @@ public class DeptController {
             @RequestParam(required = false) LocalDateTime createdTimeStart,
             @RequestParam(required = false) LocalDateTime createdTimeEnd) {
         log.info("查询部门数据...");
-        log.info("page = {}, size = {}, name = {}, createdTimeStart = {}, createdTimeEnd = {}", 
+        log.info("page = {}, size = {}, name = {}, createdTimeStart = {}, createdTimeEnd = {}",
                 page, size, name, createdTimeStart, createdTimeEnd);
-        
-        // 构建查询条件
+
         DeptQuery deptQuery = new DeptQuery();
         deptQuery.setName(name);
         deptQuery.setCreatedTimeStart(createdTimeStart);
         deptQuery.setCreatedTimeEnd(createdTimeEnd);
         deptQuery.setPageNum(page);
         deptQuery.setPageSize(size);
-        
-        // 开启分页
+
         PageHelper.startPage(page, size);
         List<Dept> depts = deptService.listByCondition(deptQuery);
         PageInfo<Dept> pageInfo = new PageInfo<>(depts);
         List<Dept> records = pageInfo.getList();
-        
-        // 构建返回结果
+
         PageResult<Dept> pageResult = new PageResult<>();
         pageResult.setRecords(records);
         pageResult.setTotal(pageInfo.getTotal());

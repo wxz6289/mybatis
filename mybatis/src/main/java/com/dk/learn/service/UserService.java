@@ -56,4 +56,8 @@ public class UserService {
     public void addUser(User user) {
         userMapper.addUser(user);
     }
+
+    public User getUser(Long id) {
+        return userMapper.getUser(id);
+    }
 }

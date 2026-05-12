@@ -22,7 +22,7 @@ public interface UserMapper {
 	@Select("SELECT COUNT(*) FROM user")
 	long count();
 
-    @Select("DELETE FROM user WHERE id = #{id}")
+    @Delete("DELETE FROM user WHERE id = #{id}")
     void removeUser(@Param("id") long id);
 
 //    @Select("INSERT INTO user (name, age, deptId, createdAt, updatedAt) VALUES (#{name}, #{age}, #{deptId}, #{createdTime}, #{updatedTime})")

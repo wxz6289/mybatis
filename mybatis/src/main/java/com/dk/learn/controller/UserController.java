@@ -7,6 +7,7 @@ import com.dk.learn.common.page.PageResult;
 import com.dk.learn.common.result.Result;
 import com.dk.learn.entity.UserVO;
 import com.dk.learn.service.UserService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,15 @@ public class UserController {
 			@RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "10") int size) {
 		return userService.listUsersWithPagination(PageQuery.of(page, size));
+	}
+
+    @GetMapping("/{id}")
+    public Result<User> getUser(@PathVariable("id") Long id) {
+        if (id == null) {
+            return Result.error("用户ID不能为空");
+        }
+        User user = userService.getUser(id);
+		return Result.ok(user);
 	}
 
 	/**

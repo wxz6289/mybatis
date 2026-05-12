@@ -4,10 +4,6 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-//@Getter
-//@Setter
-//@ToString
-//@EqualsAndHashCode
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,43 +22,4 @@ public class User {
         this.deptId = deptId;
     }
 
-    public User(UserVO ther) {
-        this.id = ther.getId();
-        this.name = ther.getName();
-        this.age = ther.getAge();
-        this.deptId = ther.getDeptId();
-        this.createdTime = ther.getCreatedTime();
-        this.updatedTime = ther.getUpdatedTime();
-    }
-//    public User() {
-//    }
-//
-//    public User(String name, int age) {
-//        this.name = name;
-//        this.age = age;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public int getAge() {
-//        return age;
-//    }
-//
-//    public void setAge(int age) {
-//        this.age = age;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "name='" + name + '\'' +
-//                ", age=" + age +
-//                '}';
-//    }
 }

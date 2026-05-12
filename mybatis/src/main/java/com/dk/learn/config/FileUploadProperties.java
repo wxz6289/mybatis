@@ -43,4 +43,9 @@ public class FileUploadProperties {
         "xls", "xlsx",
         "txt"
     };
+    
+    /**
+     * 存储类型：local-本地存储，oss-阿里云OSS
+     */
+    private String storageType = "local";
 }

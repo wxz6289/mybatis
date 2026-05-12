@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <environment id="development">
-        <transactionManager type="JDBC">
-            <property name="" value=""/>
-        </transactionManager>
-        <dataSource type="POOLED">
-            <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://localhost:3306/mybatis?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
-            <property name="username" value="${user.name}"/>
-            <property name="password" value="${user.password}"/>
-        </dataSource>
-    </environment>
-    <mappers>
-        <mapper resource="com/dk/learn/mapper/UserMapper.xml"/>
-    </mappers>
+    <!-- Spring Boot 已通过 application.yaml 自动配置 DataSource，
+         此文件仅保留 MyBatis 特定设置 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
 </configuration>
