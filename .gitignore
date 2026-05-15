@@ -1,16 +1,3 @@
-# 仓库根与本地环境
-.DS_Store
-.idea/
-.env
-.credentials-archive.local.md
-.secret-fix-backup/
-
-# 已从本仓库移除的目录（若本地仍存在，勿误 add）
-/spring/
-/AndroidBrowser/
-/java/
-
-# Maven / Spring Boot（原 mybatis 子工程）
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
