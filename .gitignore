@@ -2,3 +2,5 @@
 .idea/
 .env
 mybatis/.secret-fix-backup/
+# 本地凭据归档（勿提交）
+mybatis/.credentials-archive.local.md
