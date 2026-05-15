@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.learn.mapper.UserThirdPartyMapper">
+    
+    <resultMap id="userThirdPartyResultMap" type="com.dk.learn.entity.UserThirdParty">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="platform" column="platform"/>
+        <result property="openId" column="open_id"/>
+        <result property="unionId" column="union_id"/>
+        <result property="accessToken" column="access_token"/>
+        <result property="refreshToken" column="refresh_token"/>
+        <result property="expireTime" column="expire_time"/>
+        <result property="extraInfo" column="extra_info"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+    
+    <!-- 根据平台和openId查询 -->
+    <select id="findByPlatformAndOpenId" resultMap="userThirdPartyResultMap">
+        SELECT * FROM user_third_party 
+        WHERE platform = #{platform} AND open_id = #{openId}
+        LIMIT 1
+    </select>
+    
+    <!-- 根据用户ID查询所有绑定 -->
+    <select id="findByUserId" resultMap="userThirdPartyResultMap">
+        SELECT * FROM user_third_party WHERE user_id = #{userId}
+    </select>
+    
+    <!-- 插入绑定信息 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_third_party(user_id, platform, open_id, union_id, access_token, refresh_token, expire_time, extra_info, created_at, updated_at)
+        VALUES(#{userId}, #{platform}, #{openId}, #{unionId}, #{accessToken}, #{refreshToken}, #{expireTime}, #{extraInfo}, #{createdAt}, #{updatedAt})
+    </insert>
+    
+    <!-- 更新绑定信息 -->
+    <update id="update">
+        UPDATE user_third_party
+        SET access_token=#{accessToken},
+            refresh_token=#{refreshToken},
+            expire_time=#{expireTime},
+            extra_info=#{extraInfo},
+            updated_at=#{updatedAt}
+        WHERE id=#{id}
+    </update>
+    
+    <!-- 删除绑定 -->
+    <delete id="deleteById">
+        DELETE FROM user_third_party WHERE id=#{id}
+    </delete>
+    
+    <!-- 根据用户ID和平台查询 -->
+    <select id="findByUserIdAndPlatform" resultMap="userThirdPartyResultMap">
+        SELECT * FROM user_third_party 
+        WHERE user_id = #{userId} AND platform = #{platform}
+        LIMIT 1
+    </select>
+</mapper>

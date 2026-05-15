@@ -17,9 +17,16 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-# 文件上传 — 开发环境使用本地存储
+
+# 阿里云 OSS：凭据仅允许来自环境变量（勿提交真实 Key）
+aliyun:
+  oss:
+    access-key-id: ${OSS_ACCESS_KEY_ID}
+    access-key-secret: ${OSS_ACCESS_KEY_SECRET}
+
+# 文件上传配置
 file:
   upload:
     path: ./uploads
     max-size: 10485760  # 10MB
-    storage-type: local  # local-本地存储，oss-阿里云OSS
+    storage-type: oss  # local-本地存储，oss-阿里云OSS

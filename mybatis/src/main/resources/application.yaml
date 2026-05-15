@@ -14,6 +14,26 @@ spring:
       max-file-size: 10MB
       max-request-size: 50MB
 
+logging:
+  level:
+    org.springframework.web: debug
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+# Server配置（HTTP和HTTPS）
+server:
+  # HTTPS配置
+  ssl:
+    enabled: ${SSL_ENABLED:true}  # 默认禁用，启用时设置为true
+    key-store: classpath:certificates/mybatis-learn.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    key-alias: mybatis-learn
+    protocol: TLS
+  # HTTPS端口
+  port: ${SERVER_PORT:8443}
+  # HTTP端口（用于重定向）
+  http-port: ${HTTP_PORT:8080}
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
@@ -53,3 +73,60 @@ aliyun:
     access-key-secret: ${OSS_ACCESS_KEY_SECRET}
     bucket-name: ${OSS_BUCKET_NAME:wxz6289}
     domain: ${OSS_DOMAIN:}
+
+# JWT（生产必须用强随机密钥，通过环境变量注入）
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 86400000  # 24小时（毫秒）
+
+# OAuth2第三方登录配置
+oauth2:
+  # GitHub配置
+  github:
+    client-id: ${GITHUB_CLIENT_ID}
+    client-secret: ${GITHUB_CLIENT_SECRET}
+    redirect-uri: ${OAUTH2_REDIRECT_URI:https://localhost:8443/api/oauth2/callback/github}
+    authorization-url: https://github.com/login/oauth/authorize
+    token-url: https://github.com/login/oauth/access_token
+    user-info-url: https://api.github.com/user
+    scope: user:email
+  
+  # 微信配置
+  wechat:
+    client-id: ${WECHAT_APP_ID:your_wechat_app_id}
+    client-secret: ${WECHAT_APP_SECRET:your_wechat_app_secret}
+    redirect-uri: ${OAUTH2_REDIRECT_URI_WECHAT:http://localhost:8080/api/oauth2/callback/wechat}
+    authorization-url: https://open.weixin.qq.com/connect/qrconnect
+    token-url: https://api.weixin.qq.com/sns/oauth2/access_token
+    user-info-url: https://api.weixin.qq.com/sns/userinfo
+    scope: snsapi_login
+  
+  # QQ配置
+  qq:
+    client-id: ${QQ_APP_ID}
+    client-secret: ${QQ_APP_KEY}
+    redirect-uri: ${OAUTH2_REDIRECT_URI_QQ:http://localhost:8080/api/oauth2/callback/qq}
+    authorization-url: https://graph.qq.com/oauth2.0/authorize
+    token-url: https://graph.qq.com/oauth2.0/token
+    user-info-url: https://graph.qq.com/user/get_user_info
+    scope: get_user_info
+  
+  # Google配置
+  google:
+    client-id: ${GOOGLE_CLIENT_ID}
+    client-secret: ${GOOGLE_CLIENT_SECRET}
+    redirect-uri: ${OAUTH2_REDIRECT_URI_GOOGLE:https://localhost:8443/api/oauth2/callback/google}
+    authorization-url: https://accounts.google.com/o/oauth2/v2/auth
+    token-url: https://oauth2.googleapis.com/token
+    user-info-url: https://www.googleapis.com/oauth2/v3/userinfo
+    scope: openid profile email
+  
+  # 微博配置
+  weibo:
+    client-id: ${WEIBO_APP_KEY:your_weibo_app_key}
+    client-secret: ${WEIBO_APP_SECRET:your_weibo_app_secret}
+    redirect-uri: ${OAUTH2_REDIRECT_URI_WEIBO:http://localhost:8080/api/oauth2/callback/weibo}
+    authorization-url: https://api.weibo.com/oauth2/authorize
+    token-url: https://api.weibo.com/oauth2/access_token
+    user-info-url: https://api.weibo.com/2/users/show.json
+    scope: email

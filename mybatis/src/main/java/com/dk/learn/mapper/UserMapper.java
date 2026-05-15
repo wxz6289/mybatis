@@ -30,8 +30,11 @@ public interface UserMapper {
     @Insert("INSERT INTO user (name, age, deptId) VALUES (#{name}, #{age}, #{deptId})")
     void addUser(User user);
 
-    @Update("UPDATE user SET name = #{user.name}, age = #{user.age}, deptId = #{user.deptId} WHERE id = #{id}")
-    void updateUser(@Param("user") User user, @Param("id") long id);
+    /**
+     * 更新用户信息（支持部分字段更新）
+     * 只有非 null 的字段才会被更新
+     */
+    void updateUserInfo(User user);
 
     @Select("SELECT * FROM user WHERE id = #{id}")
     @ResultMap("userMap")
@@ -41,7 +44,6 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE name LIKE CONCAT('%', #{name}, '%') AND age BETWEEN #{start} AND #{end}")
     List<User> getUsers(@Param("name")  String name, @Param("start") int start, @Param("end") int end);
 
-    User updateUserInfo(User user);
     /**
      * 方案1：使用对象封装参数 + XML动态SQL（推荐）
      * 所有参数都是可选的，会根据传入的值动态构建SQL

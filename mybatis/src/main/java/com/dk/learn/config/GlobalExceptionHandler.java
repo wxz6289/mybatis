@@ -2,7 +2,6 @@ package com.dk.learn.config;
 
 import com.dk.learn.common.result.Result;
 import com.dk.learn.service.FileOperationException;
-import com.dk.learn.service.OssFileAccessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

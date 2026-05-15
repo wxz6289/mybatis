@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 public class User {
     private Long id;
     private String name;
-    private int age;
-    private int deptId;
+    private Integer age;
+    private Integer deptId;
     /** JSON 日期时间由全局 Jackson 配置格式化为 yyyy-MM-dd HH:mm:ss */
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;

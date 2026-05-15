@@ -31,10 +31,10 @@
             LIMIT #{offset}, #{size}
         </if>
     </select>
-    <select id="updateUserInfo" resultMap="userResultMap">
+    <update id="updateUserInfo">
         UPDATE user
         <set>
-            <if test="name != null">
+            <if test="name != null and name != ''">
                 name = #{name},
             </if>
             <if test="age != null">
@@ -45,5 +45,5 @@
             </if>
         </set>
         WHERE id = #{id}
-    </select>
+    </update>
 </mapper>

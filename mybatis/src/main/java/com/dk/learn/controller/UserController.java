@@ -107,4 +107,16 @@ public class UserController {
 		userService.batchRemoveUsers(idList);
 		return Result.ok(null);
 	}
+	
+	/**
+	 * 修改用户信息
+	 * @param id 用户ID
+	 * @param user 用户信息
+	 * @return 修改结果
+	 */
+	@PutMapping("/{id}")
+	public Result<Void> updateUser(@PathVariable Long id, @RequestBody User user) {
+		userService.updateUser(id, user);
+		return Result.ok(null);
+	}
 }

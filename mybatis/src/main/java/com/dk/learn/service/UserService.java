@@ -60,4 +60,21 @@ public class UserService {
     public User getUser(Long id) {
         return userMapper.getUser(id);
     }
+
+    /**
+     * 更新用户信息（支持部分字段更新）
+     * @param id 用户ID
+     * @param user 用户信息（只有非 null 的字段会被更新）
+     */
+    public void updateUser(Long id, User user) {
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("用户ID不能为空");
+        }
+        if (user == null) {
+            throw new IllegalArgumentException("用户信息不能为空");
+        }
+        // 设置用户ID到user对象中
+        user.setId(id);
+        userMapper.updateUserInfo(user);
+    }
 }

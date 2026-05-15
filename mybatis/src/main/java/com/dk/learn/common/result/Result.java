@@ -36,6 +36,6 @@ public class Result<T> {
 	}
 	
 	public static <T> Result<T> error(String message) {
-		return fail(500, message);
+        return fail(500, message);
 	}
 }

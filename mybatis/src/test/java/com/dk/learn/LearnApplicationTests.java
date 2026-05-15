@@ -82,8 +82,29 @@ class LearnApplicationTests {
 
     @Test
     public void testUpdateUser() {
-        User user = new User("Dreamer", 26, 2);
-        userMapper.updateUser(user, 14);
+        // 测试部分字段更新 - 只更新姓名
+        User user1 = new User();
+        user1.setId(14L);
+        user1.setName("Dreamer");
+        userMapper.updateUserInfo(user1);
+        System.out.println("只更新姓名完成");
+        
+        // 测试部分字段更新 - 只更新年龄和部门
+        User user2 = new User();
+        user2.setId(14L);
+        user2.setAge(26);
+        user2.setDeptId(2);
+        userMapper.updateUserInfo(user2);
+        System.out.println("只更新年龄和部门完成");
+        
+        // 测试全部字段更新
+        User user3 = new User();
+        user3.setId(14L);
+        user3.setName("King");
+        user3.setAge(18);
+        user3.setDeptId(1);
+        userMapper.updateUserInfo(user3);
+        System.out.println("全部字段更新完成");
     }
 
     @Test

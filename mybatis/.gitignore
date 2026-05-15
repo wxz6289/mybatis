@@ -32,3 +32,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### SSL Certificates ###
+src/main/resources/certificates/*.p12
+src/main/resources/certificates/*.jks
+src/main/resources/certificates/*.cer
+src/main/resources/certificates/*.pem
+!src/main/resources/certificates/.gitkeep
