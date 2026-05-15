@@ -1,12 +1,12 @@
 # Spring Boot + MyBatis 示例
 
-本仓库由父仓库 [`wxz6289/mybatis`](https://github.com/wxz6289/mybatis)（`learn/java` 聚合仓）以 **Git 子模块** 方式引用。
+本仓库由父聚合仓 **[`wxz6289/java`](https://github.com/wxz6289/java)** 以 **Git 子模块** 方式引用目录 `mybatis/`。
 
 ## 克隆（仅本仓库）
 
 ```bash
-git clone git@github.com:wxz6289/mybatis-submodule.git
-cd mybatis-submodule
+git clone git@github.com:wxz6289/mybatis.git
+cd mybatis
 ```
 
 ## 配置与运行
@@ -22,6 +22,9 @@ cd mybatis-submodule
 在父仓库根目录：
 
 ```bash
+git clone --recurse-submodules git@github.com:wxz6289/java.git
+cd java
+# 或已克隆后：
 git submodule update --init mybatis
 ```
 
