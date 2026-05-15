@@ -26,18 +26,18 @@
 ## 📁 创建的文件
 
 ### 配置类（1个）
-1. [HttpsConfig.java](file:///Users/dreamerking/learn/java/mybatis/src/main/java/com/dk/learn/config/HttpsConfig.java) - HTTPS配置类，实现HTTP重定向
+1. [HttpsConfig.java](file:///Users/dreamerking/learn/java/src/main/java/com/dk/learn/config/HttpsConfig.java) - HTTPS配置类，实现HTTP重定向
 
 ### 脚本工具（2个）
-2. [generate-ssl-cert.sh](file:///Users/dreamerking/learn/java/mybatis/generate-ssl-cert.sh) - SSL证书生成脚本
-3. [setup-https.sh](file:///Users/dreamerking/learn/java/mybatis/setup-https.sh) - HTTPS快速配置脚本
+2. [generate-ssl-cert.sh](file:///Users/dreamerking/learn/java/generate-ssl-cert.sh) - SSL证书生成脚本
+3. [setup-https.sh](file:///Users/dreamerking/learn/java/setup-https.sh) - HTTPS快速配置脚本
 
 ### 文档（1个）
-4. [HTTPS_GUIDE.md](file:///Users/dreamerking/learn/java/mybatis/HTTPS_GUIDE.md) - 详细配置指南
+4. [HTTPS_GUIDE.md](file:///Users/dreamerking/learn/java/HTTPS_GUIDE.md) - 详细配置指南
 
 ### 配置文件更新（2个）
-5. [application.yaml](file:///Users/dreamerking/learn/java/mybatis/src/main/resources/application.yaml) - 添加SSL配置
-6. [.gitignore](file:///Users/dreamerking/learn/java/mybatis/.gitignore) - 排除证书文件
+5. [application.yaml](file:///Users/dreamerking/learn/java/src/main/resources/application.yaml) - 添加SSL配置
+6. [.gitignore](file:///Users/dreamerking/learn/java/.gitignore) - 排除证书文件
 
 ### 目录结构（1个）
 7. `src/main/resources/certificates/.gitkeep` - 保持目录结构

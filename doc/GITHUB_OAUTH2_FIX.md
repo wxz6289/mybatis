@@ -144,7 +144,7 @@ private Map<String, Object> parseFormUrlEncoded(String response) {
 
 ## 修改的文件
 
-- [OAuth2Client.java](file:///Users/dreamerking/learn/java/mybatis/src/main/java/com/dk/learn/common/util/OAuth2Client.java)
+- [OAuth2Client.java](file:///Users/dreamerking/learn/java/src/main/java/com/dk/learn/common/util/OAuth2Client.java)
   - ✅ 添加平台判断逻辑（Token端点）
   - ✅ 支持form-urlencoded请求和响应
   - ✅ 添加容错解析机制

@@ -1,11 +1,54 @@
+# 仓库根与本地环境
 .DS_Store
 .idea/
 .env
-mybatis/.secret-fix-backup/
-# 本地凭据归档（勿提交）
-mybatis/.credentials-archive.local.md
+.credentials-archive.local.md
+.secret-fix-backup/
 
 # 已从本仓库移除的目录（若本地仍存在，勿误 add）
 /spring/
 /AndroidBrowser/
 /java/
+
+# Maven / Spring Boot（原 mybatis 子工程）
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/uploads/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### SSL Certificates ###
+src/main/resources/certificates/*.p12
+src/main/resources/certificates/*.jks
+src/main/resources/certificates/*.cer
+src/main/resources/certificates/*.pem
+!src/main/resources/certificates/.gitkeep
