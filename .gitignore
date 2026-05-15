@@ -4,3 +4,8 @@
 mybatis/.secret-fix-backup/
 # 本地凭据归档（勿提交）
 mybatis/.credentials-archive.local.md
+
+# 已从本仓库移除的目录（若本地仍存在，勿误 add）
+/spring/
+/AndroidBrowser/
+/java/

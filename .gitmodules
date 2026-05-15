@@ -1,6 +1,0 @@
-[submodule "java"]
-	path = java
-	url = git@github.com:wxz6289/java.git
-[submodule "spring/springboot"]
-	path = spring/springboot
-	url = ./spring/springboot
